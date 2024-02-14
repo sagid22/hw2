@@ -13,6 +13,9 @@ public String getName(){
     return this.name;
 }
 
+    public Item[] getItems() {
+        return items;
+    }
 
 
 //public void pickItem(Item item)

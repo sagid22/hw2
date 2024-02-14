@@ -1,24 +1,24 @@
 public class Room {
     private String name;
     private Item[] listItems;
-    private Boolean[] directions;
+    private Room[] roomsDirections;
     private Player player;
-    private boolean isPuzzleSolved;
+    private boolean puzzleStatus;
 
     public Room(String name) {
         this.name = name;
         this.listItems = new Item[2];
-        this.directions = new Boolean[4];//north-0,south-1,east-2,west-3
+        this.roomsDirections = new Room[4];//north-0,south-1,east-2,west-3
         this.player = null;
-        this.isPuzzleSolved = false;
+        this.puzzleStatus = false;
     }
 
     public boolean getPuzzleStatus() {
-        return this.isPuzzleSolved;
+        return this.puzzleStatus;
     }
 
     public void setPuzzleStatus(boolean status) {
-        this.isPuzzleSolved = status;
+        this.puzzleStatus = status;
     }
 
     public void addItemToRoom(Item i) {
@@ -38,7 +38,7 @@ public class Room {
     public void removeItemFromRoom(Item it) {
         boolean isthere = false;
         for (int i = 0; i < listItems.length; i++) {
-            if (listItems[i] == it) {
+            if (listItems[i] == it) {//לבדוק אם ההשוואה טובה, אם לא לעשות equals או ככה או get.name
                 isthere = true;
                 listItems[i] = null;
                 System.out.println(it.getName() + "was removed from the game");
@@ -50,24 +50,49 @@ public class Room {
         }
     }
 
-    public String getName() {
+    public String getRoomName() {
         return this.name;
     }
+    public Player getPlayer(){return  this.player;}
+    public Item[] getListItems(){return this.listItems;}
+    public void setPlayer(Player P){this.player=player;}
 
-    public boolean isDirectionAlreadyConnected(Direction d) {
-        if (d == Direction.NORTH) {
-            return (directions[0] == true);
+
+    public void roomToRoomConnection(Room other,Direction d){
+        int d1=-1,d2=-1;
+        switch(d){
+            case NORTH:
+                d1=0;
+                d2=1;
+            case SOUTH:
+                d1=1;
+                d2=0;
+            case EAST:
+                d1=2;
+                d2=3;
+            case WEST:
+                d1=3;
+                d2=2;
         }
-        else if(d==Direction.SOUTH){
-            return(directions[1]==true);
+        if(this.getRoomsDirections()[d1]==null&& other.getRoomsDirections()[d2]==null){
+            this.getRoomsDirections()[d1]=other;
+            other.getRoomsDirections()[d2]=this;
+            System.out.println(this.getRoomName()+"and"+other.getRoomName()+"are connected");
+
         }
-        else if(d==Direction.EAST){
-            return(directions[2]==true);
-        }
-        else if(d==Direction.WEST){
-            return(directions[3]==true);
-        }
-        return  false;//לוודא
+        else {System.out.println("Could not connect"+this.getRoomName()+"and"+other.getRoomName()+".");}
+
+
     }
 
-}
+
+    public Room[] getRoomsDirections() {
+        return roomsDirections;
+    }
+    public void playerInitialization(Player p){
+        this.player=p;
+        }
+
+    }
+
+
