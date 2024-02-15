@@ -108,7 +108,7 @@ public class GameManager {
 
     public void pickUpItem(Item it) {
         Room current=this.player.getCurrentRoom();
-
+        boolean isInRoom = false;
         for (int j = 0; j < current.getListItems().length; j++) {
             if (current.getListItems()[j] == it) {//אם יש את החפץ בחדר
                 isInRoom = true;
@@ -123,7 +123,6 @@ public class GameManager {
                 }
                 if (isTherePlace) {
                     this.player.addItemToBag(it,count);
-
                 } else {
                     System.out.println("player's inventory is full.");
                 }
@@ -132,9 +131,6 @@ public class GameManager {
                 System.out.println(it.getName() + "is not in" + current.getRoomName() + ".");
             }
         }
-
-
-
     }
 
     public void dropItem(Item it) {
@@ -151,8 +147,9 @@ public class GameManager {
             while (!isTherePlaceInRoom && counter < current.getListItems().length) {
                 if (current.getListItems()[counter] == null) {
                     isTherePlaceInRoom = true;
+                }else{
+                    counter += 1;
                 }
-                counter += 1;
             }
             if (isTherePlaceInRoom) {
                 this.player.DropItem(it,counter);
@@ -175,13 +172,12 @@ public class GameManager {
                 isDestroyed = true;
             }
         }
-            for (int k = 0; k < this.player.getCurrentRoom().getListItems().length; k++) {
-                if (this.player.getCurrentRoom().getListItems()[k] == it) {
-                    this.player.destroyItemFromCurrentRoom(it,k);
-                    isDestroyed = true;
-                }
+        for (int k = 0; k < this.player.getCurrentRoom().getListItems().length; k++) {// בידקה האם הפריט בחדר
+            if (this.player.getCurrentRoom().getListItems()[k] == it) {
+                this.player.destroyItemFromCurrentRoom(it,k);
+                isDestroyed = true;
             }
-
+        }
         if (isDestroyed) {
             System.out.println(this.player.getName() + "disassembled" + it.getName() + ".");
         } else {
@@ -191,9 +187,9 @@ public class GameManager {
 
     public void solvePuzzle() {
         Room current=this.player.getCurrentRoom();
-        if (current.getPuzzleStatus()) {
+        if (current.getPuzzleStatus()) { //if the puzzle exists
             System.out.println(this.player.getName() + "is solving the puzzle in" + current.getRoomName());
-           current.setPuzzleStatus(false);//אולי אפשר לעשות deactivate.לנסות להבין האם ההגדרה של אמת-החידה לא פתורה ושקר לא פתורה זו הקונבנציה הנכונה
+            current.setPuzzleStatus(false);//אולי אפשר לעשות deactivate.לנסות להבין האם ההגדרה של אמת-החידה לא פתורה ושקר לא פתורה זו הקונבנציה הנכונה
         } else {
             System.out.println("There is no active puzzle in " + current.getRoomName() + ".");
         }
