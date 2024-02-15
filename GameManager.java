@@ -1,7 +1,6 @@
 public class GameManager {
     private Room[] rooms;
     private Player player;
-    private String playeName;
     private int bagCap;
 
     public GameManager() {
@@ -12,9 +11,9 @@ public class GameManager {
     public void addPlayer(Player p) {
         if (this.player == null) {
             this.player = p;
-            System.out.println(player.getName() + "was added to the game.");
+            System.out.println(player.getName() + " was added to the game.");
         } else {
-            System.out.println("Could not add" + p.getName() + "to the game.");
+            System.out.println("Could not add " + p.getName() + " to the game.");
         }
     }
 
@@ -24,14 +23,14 @@ public class GameManager {
         while (isAdded == false && counter < rooms.length) {
             if (rooms[counter] == null) {
                 rooms[counter] = r;
-                System.out.println(rooms[counter].getRoomName() + "was added to the game.");
+                System.out.println(rooms[counter].getRoomName() + " was added to the game.");
                 isAdded = true;
             } else {
                 counter += 1;
             }
         }
         if (isAdded == false) {
-            System.out.println("Could not add" + r.getRoomName() + "to the game.");
+            System.out.println("Could not add " + r.getRoomName() + " to the game.");
         }
 
     }
@@ -44,9 +43,9 @@ public class GameManager {
         if (this.player == p) {
             this.player.removePlayerItems();
             this.player = null;
-            System.out.println(p.getName() + "was removed from the game");
+            System.out.println(p.getName() + " was removed from the game.");
         } else {
-            System.out.println(p.getName() + "does not exist.");
+            System.out.println(p.getName() + " does not exist.");
         }
     }
 
@@ -56,16 +55,16 @@ public class GameManager {
             if (rooms[i] == r) {
                 isthere = true;
                 if (this.player.getCurrentRoom() == r) {//if the player's current room is what we want to remove
-                    System.out.println(r.getRoomName() + "could not be removed.");
+                    System.out.println(r.getRoomName() + " could not be removed.");
                 } else {
                     rooms[i] = null;
-                    System.out.println(r.getRoomName() + "was removed from the game");
+                    System.out.println(r.getRoomName() + " was removed from the game.");
                 }
             }
 
         }
         if (isthere == false) {
-            System.out.println(r.getRoomName() + "does not exist.");
+            System.out.println(r.getRoomName() + " does not exist.");
         }
     }
 
@@ -78,9 +77,9 @@ public class GameManager {
     public void startPlayer(Room startRoom) {
         if (this.player.getCurrentRoom() == null) {
             this.player.initializationCurrentRoom(startRoom);
-            System.out.println(this.player.getName() + "starts in" + startRoom.getRoomName());
+            System.out.println(this.player.getName() + " starts in "  + startRoom.getRoomName()+".");
         } else {
-            System.out.println(this.player.getName() + "has already started.");
+            System.out.println(this.player.getName() + " has already started.");
         }
 
     }
@@ -99,10 +98,10 @@ public class GameManager {
                 d = 3;
         }
         if (this.player.getCurrentRoom().getRoomsDirections()[d] != null && this.player.getCurrentRoom().getPuzzleStatus() == false) {//לבדוק אם להוסיף "וגם" עם בדיקת סטטוס הפאזל בחדר
-            System.out.println(this.player.getName() + "moved from" + this.player.getCurrentRoom() + "to" + this.player.getCurrentRoom().getRoomsDirections()[d] + "via the" + dMove + "exit.");
+            System.out.println(this.player.getName() + " moved from " + this.player.getCurrentRoom() + " to " + this.player.getCurrentRoom().getRoomsDirections()[d] + " via the " + dMove + " exit.");
             this.player.setCurrentRoom(this.player.getCurrentRoom().getRoomsDirections()[d]);
         } else {
-            System.out.println(this.player.getName() + "could not move via the" + dMove + "exit.");
+            System.out.println(this.player.getName() + " could not move via the " + dMove + " exit.");
         }
     }
 
@@ -128,7 +127,7 @@ public class GameManager {
                 }
             }
             if (!isInRoom ) {
-                System.out.println(it.getName() + "is not in" + current.getRoomName() + ".");
+                System.out.println(it.getName() + " is not in " + current.getRoomName() + ".");
             }
         }
     }
@@ -155,7 +154,7 @@ public class GameManager {
                 this.player.DropItem(it,counter);
             }
             else {
-                System.out.println(current.getRoomName() + "is full.");
+                System.out.println(current.getRoomName() + " is full.");
             }
 
 
@@ -179,16 +178,16 @@ public class GameManager {
             }
         }
         if (isDestroyed) {
-            System.out.println(this.player.getName() + "disassembled" + it.getName() + ".");
+            System.out.println(this.player.getName() + " disassembled " + it.getName() + ".");
         } else {
-            System.out.println(this.player.getName() + "could not destroy" + it.getName() + ".");
+            System.out.println(this.player.getName() + " could not destroy " + it.getName() + ".");
         }
     }
 
     public void solvePuzzle() {
         Room current=this.player.getCurrentRoom();
         if (current.getPuzzleStatus()) { //if the puzzle exists
-            System.out.println(this.player.getName() + "is solving the puzzle in" + current.getRoomName());
+            System.out.println(this.player.getName() + " is solving the puzzle in " + current.getRoomName());
             current.setPuzzleStatus(false);//אולי אפשר לעשות deactivate.לנסות להבין האם ההגדרה של אמת-החידה לא פתורה ושקר לא פתורה זו הקונבנציה הנכונה
         } else {
             System.out.println("There is no active puzzle in " + current.getRoomName() + ".");

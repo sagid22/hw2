@@ -42,7 +42,7 @@ public class Player {
             }
         }
         this.inventory[place]=newItem;//הכנסת הפריט לתיק
-        System.out.println(this.name + "picked up" + newItem.getName() + "from" + currentRoom.getRoomName() + ".");
+        System.out.println(this.name + " picked up" + newItem.getName() + " from " + currentRoom.getRoomName() + ".");
     }
     public void DropItem(Item itemToDrop,int place){
         for(int i = 0; i<this.inventory.length; i++){
@@ -51,24 +51,6 @@ public class Player {
             }
         }
         this.currentRoom.getListItems()[place]=itemToDrop;
-        System.out.println(this.name + "droped" + itemToDrop.getName() + "in" + currentRoom.getRoomName() + ".");
+        System.out.println(this.name + " dropped " + itemToDrop.getName() + " in " + currentRoom.getRoomName() + ".");
     }
-
-
-//public void pickItem(Item item)
-//{
-  //  int counter=0;
-    //boolean isPlaced=false;
-    //while(isPlaced=false&&counter<items.length){
-      //  if(items[counter]==null){
-        //    items[counter]=item;
-          //  isPlaced=true;
-        //}
-       // counter+=1;
-   // }
-   // if (isPlaced==true){System.out.println("");}
-//}
-
-
-
 }

@@ -22,12 +22,12 @@ public class Room {
     public void addItemToRoom(Item i) {
         if (listItems[0] == null) {
             listItems[0] = i;
-            System.out.println(listItems[0].getName() + "was added to the game.");
+            System.out.println(listItems[0].getName() + " was added to the game.");
         } else if (listItems[1] == null) {
             listItems[1] = i;
-            System.out.println(listItems[1].getName() + "was added to the game.");
+            System.out.println(listItems[1].getName() + " was added to the game.");
         } else {
-            System.out.println("Could not add" + i.getName() + "to the game.");
+            System.out.println("Could not add " + i.getName() + " to the game.");
             ;
         }
 
@@ -39,23 +39,19 @@ public class Room {
             if (listItems[i] == it) {//לבדוק אם ההשוואה טובה, אם לא לעשות equals או ככה או get.name
                 isthere = true;
                 listItems[i] = null;
-                System.out.println(it.getName() + "was removed from the game");
+                System.out.println(it.getName() + " was removed from the game.");
             }
 
         }
         if (isthere == false) {
-            System.out.println(it.getName() + "does not exist.");
+            System.out.println(it.getName() + " does not exist.");
         }
     }
 
     public String getRoomName() {
         return this.name;
     }
-   // public Player getPlayer(){return  this.player;}
     public Item[] getListItems(){return this.listItems;}
-    //public void setPlayer(Player P){this.player=player;}
-
-
     public void roomToRoomConnection(Room other,Direction d){
         int d1=-1,d2=-1;
         switch(d){
@@ -75,9 +71,9 @@ public class Room {
         if(this.getRoomsDirections()[d1]==null&& other.getRoomsDirections()[d2]==null){
             this.getRoomsDirections()[d1]=other;
             other.getRoomsDirections()[d2]=this;
-            System.out.println(this.getRoomName()+"and"+other.getRoomName()+"are connected");
+            System.out.println(this.getRoomName()+" and "+other.getRoomName()+" are connected");
         }
-        else {System.out.println("Could not connect"+this.getRoomName()+"and"+other.getRoomName()+".");}
+        else {System.out.println("Could not connect "+this.getRoomName()+" and "+other.getRoomName()+".");}
     }
 
 
