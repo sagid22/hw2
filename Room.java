@@ -2,14 +2,12 @@ public class Room {
     private String name;
     private Item[] listItems;
     private Room[] roomsDirections;
-    private Player player;
     private boolean puzzleStatus;
 
     public Room(String name) {
         this.name = name;
         this.listItems = new Item[2];
         this.roomsDirections = new Room[4];//north-0,south-1,east-2,west-3
-        this.player = null;
         this.puzzleStatus = false;
     }
 
@@ -53,9 +51,9 @@ public class Room {
     public String getRoomName() {
         return this.name;
     }
-    public Player getPlayer(){return  this.player;}
+   // public Player getPlayer(){return  this.player;}
     public Item[] getListItems(){return this.listItems;}
-    public void setPlayer(Player P){this.player=player;}
+    //public void setPlayer(Player P){this.player=player;}
 
 
     public void roomToRoomConnection(Room other,Direction d){
@@ -89,9 +87,6 @@ public class Room {
     public Room[] getRoomsDirections() {
         return roomsDirections;
     }
-    public void playerInitialization(Player p){
-        this.player=p;
-        }
 
     }
 
