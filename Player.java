@@ -1,7 +1,7 @@
 public class Player {
     private  String name;
-    private  int bagCap;
     private Item[] items;
+    private Room currentRoom;
 
 
     public  Player(String name,int bagCap){
@@ -68,11 +68,6 @@ public class Player {
    // }
    // if (isPlaced==true){System.out.println("");}
 //}
-
-
-
-
-
 
 
 

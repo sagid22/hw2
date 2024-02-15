@@ -76,11 +76,8 @@ public class Room {
             this.getRoomsDirections()[d1]=other;
             other.getRoomsDirections()[d2]=this;
             System.out.println(this.getRoomName()+"and"+other.getRoomName()+"are connected");
-
         }
         else {System.out.println("Could not connect"+this.getRoomName()+"and"+other.getRoomName()+".");}
-
-
     }
 
 

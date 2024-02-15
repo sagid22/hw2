@@ -11,7 +11,7 @@ public class GameManager {
 
     public void addPlayer(Player p) {
         if (this.player == null) {
-            this.player = p;//לחשוב האם זה בסדר שאני שם p או לעשות חדש
+            this.player = p;
             System.out.println(player.getName() + "was added to the game.");
         } else {
             System.out.println("Could not add" + p.getName() + "to the game.");
@@ -23,7 +23,7 @@ public class GameManager {
         boolean isAdded = false;
         while (isAdded == false && counter < rooms.length) {
             if (rooms[counter] == null) {
-                rooms[counter] = r;//לחשוב האם זה בסדר שאני שם r או לעשות חדש
+                rooms[counter] = r;
                 System.out.println(rooms[counter].getRoomName() + "was added to the game.");
                 isAdded = true;
             } else {
@@ -41,7 +41,8 @@ public class GameManager {
     }
 
     public void removePlayer(Player p) {
-        if (this.player == p) {//לבדוק האם ההשוואה נכונה פה וגם בשאר הREMOVE
+        if (this.player == p) {
+            this.player.removePlayerItems();
             this.player = null;
             System.out.println(p.getName() + "was removed from the game");
         } else {
@@ -50,9 +51,9 @@ public class GameManager {
     }
 
     public void removeRoom(Room r) {
-        boolean isthere = false;
+        boolean isthere = false; // if the room is exists in the room array
         for (int i = 0; i < rooms.length; i++) {
-            if (rooms[i] == r) {//לבדוק שוב תקינות של השוואה
+            if (rooms[i] == r) {
                 isthere = true;
                 if (this.player.getCurrentRoom() == r) {//if the player's current room is what we want to remove
                     System.out.println(r.getRoomName() + "could not be removed.");
@@ -68,9 +69,6 @@ public class GameManager {
         }
     }
 
-    public void removeItem(Room r, Item i) {
-        r.removeItemFromRoom(i);
-    }
 
     public void connectRooms(Room room1, Room room2, Direction d) {
         room1.roomToRoomConnection(room2, d);
@@ -100,16 +98,11 @@ public class GameManager {
             case WEST:
                 d = 3;
         }
-        for (int i = 0; i < rooms.length; i++) {
-            if (rooms[i].getPlayer() == this.player) {
-                if (rooms[i].getRoomsDirections()[d] != null && rooms[i].getPuzzleStatus() == false) {//לבדוק אם להוסיף "וגם" עם בדיקת סטטוס הפאזל בחדר
-                    (rooms[i].getRoomsDirections()[d]).setPlayer(this.player);
-                    System.out.println(this.player.getName() + "moved from" + rooms[i].getRoomName() + "to" + rooms[i].getRoomsDirections()[d].getRoomName() + "via the" + dMove + "exit.");
-                    rooms[i].setPlayer(null);
-                } else {
-                    System.out.println(this.player.getName() + "could not move via the" + dMove + "exit.");
-                }
-            }
+        if (this.player.getCurrentRoom().getRoomsDirections()[d] != null && this.player.getCurrentRoom().getPuzzleStatus() == false) {//לבדוק אם להוסיף "וגם" עם בדיקת סטטוס הפאזל בחדר
+            System.out.println(this.player.getName() + "moved from" + this.player.getCurrentRoom() + "to" + this.player.getCurrentRoom().getRoomsDirections()[d] + "via the" + dMove + "exit.");
+            this.player.setCurrentRoom(this.player.getCurrentRoom().getRoomsDirections()[d]);
+        } else {
+            System.out.println(this.player.getName() + "could not move via the" + dMove + "exit.");
         }
     }
 
