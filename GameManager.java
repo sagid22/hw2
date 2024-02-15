@@ -110,17 +110,16 @@ public class GameManager {
         Room current=this.player.getCurrentRoom();
 
         for (int j = 0; j < current.getListItems().length; j++) {
-            boolean isInRoom = false;
             if (current.getListItems()[j] == it) {//אם יש את החפץ בחדר
                 isInRoom = true;
                 boolean isTherePlace = false;
                 int count = 0;
-                while (!isTherePlace && count < this.player.getItems().length) {//בודקת אם יש מקום בתיק של השחקן
-                    if (this.player.getItems()[count] == null) {
+                while (!isTherePlace && count < this.player.getInventory().length) {//בודקת אם יש מקום בתיק של השחקן
+                    if (this.player.getInventory()[count] == null) {
                         isTherePlace = true;
+                    } else {
+                        count += 1;
                     }
-                    count += 1;
-
                 }
                 if (isTherePlace) {
                     this.player.addItemToBag(it,count);
@@ -140,14 +139,12 @@ public class GameManager {
 
     public void dropItem(Item it) {
         boolean isInBag = false;
-        int index = 1;
-        for (int i = 0; i < this.player.getItems().length; i++) {//בדיקה האם האייטם בתיק
-            if (this.player.getItems()[i] == it) {
-                index = i;
+        for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
+            if (this.player.getInventory()[i] == it) {
                 isInBag = true;
             }
         }
-        if (isInBag ) {
+        if (isInBag) {
             Room current=this.player.getCurrentRoom();
             boolean isTherePlaceInRoom = false;
             int counter = 0;
@@ -172,8 +169,8 @@ public class GameManager {
 
     public void disassembleItem(Item it) {
         boolean isDestroyed = false;
-        for (int i = 0; i < this.player.getItems().length; i++) {//בדיקה האם האייטם בתיק
-            if (this.player.getItems()[i] == it) {
+        for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
+            if (this.player.getInventory()[i] == it) {
                 this.player.destroyItemFromInventory(it,i);
                 isDestroyed = true;
             }
@@ -188,7 +185,7 @@ public class GameManager {
         if (isDestroyed) {
             System.out.println(this.player.getName() + "disassembled" + it.getName() + ".");
         } else {
-            System.out.println(this.player.getName() + "coould not destroy" + it.getName() + ".");
+            System.out.println(this.player.getName() + "could not destroy" + it.getName() + ".");
         }
     }
 
