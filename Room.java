@@ -4,6 +4,11 @@ public class Room {
     private Room[] roomsDirections;
     private boolean puzzleStatus;
 
+    /**
+     * Constructs a new Room object with the specified name.
+     *
+     * @param name The name of the room.
+     */
     public Room(String name) {
         this.name = name;
         this.listItems = new Item[2];
@@ -11,14 +16,29 @@ public class Room {
         this.puzzleStatus = false;
     }
 
+    /**
+     * Gets the puzzle status of the room.
+     *
+     * @return The puzzle status of the room.
+     */
     public boolean getPuzzleStatus() {
         return this.puzzleStatus;
     }
 
+    /**
+     * Sets the puzzle status of the room.
+     *
+     * @param status The puzzle status to set.
+     */
     public void setPuzzleStatus(boolean status) {
         this.puzzleStatus = status;
     }
 
+    /**
+     * Adds an item to the room.
+     *
+     * @param i The item to add to the room.
+     */
     public void addItemToRoom(Item i) {
         if (listItems[0] == null) {
             listItems[0] = i;
@@ -33,6 +53,11 @@ public class Room {
 
     }
 
+    /**
+     * Removes an item from the room.
+     *
+     * @param it The item to remove from the room.
+     */
     public void removeItemFromRoom(Item it) {
         boolean isthere = false;
         for (int i = 0; i < listItems.length; i++) {
@@ -48,10 +73,28 @@ public class Room {
         }
     }
 
+    /**
+     * Gets the name of the room.
+     *
+     * @return The name of the room.
+     */
     public String getRoomName() {
         return this.name;
     }
+
+    /**
+     * Gets the list of items in the room.
+     *
+     * @return The list of items in the room.
+     */
     public Item[] getListItems(){return this.listItems;}
+
+    /**
+     * Establishes a connection between two rooms.
+     *
+     * @param other The other room to connect to.
+     * @param d     The direction of the connection.
+     */
     public void roomToRoomConnection(Room other,Direction d){
         int d1=-1,d2=-1;
         switch(d){
@@ -76,7 +119,11 @@ public class Room {
         else {System.out.println("Could not connect "+this.getRoomName()+" and "+other.getRoomName()+".");}
     }
 
-
+    /**
+     * Gets the directions of connected rooms.
+     *
+     * @return The array of connected rooms in different directions.
+     */
     public Room[] getRoomsDirections() {
         return roomsDirections;
     }
