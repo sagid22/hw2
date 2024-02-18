@@ -52,6 +52,13 @@ public class Room {
         }
 
     }
+    /**
+     * Removes the specified room from the array of room directions.
+     * If the specified room is connected in the array of room directions,
+     * sets its position in the array to null, effectively disconnecting it.
+     *
+     * @param r the room to be removed from the array of room directions
+     */
     public void removeFromRoomDirection(Room r){//מקבלת חדר ובמידה והוא מחובר במערך הכיוונים- שמים במקומו NULL
         for (int i=0;i<roomsDirections.length;i++){
             if(roomsDirections[i]==r){
