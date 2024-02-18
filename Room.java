@@ -52,6 +52,13 @@ public class Room {
         }
 
     }
+    public void removeFromRoomDirection(Room r){//מקבלת חדר ובמידה והוא מחובר במערך הכיוונים- שמים במקומו NULL
+        for (int i=0;i<roomsDirections.length;i++){
+            if(roomsDirections[i]==r){
+                roomsDirections[i]=null;
+            }
+        }
+    }
 
     /**
      * Removes an item from the room.
@@ -101,20 +108,24 @@ public class Room {
             case NORTH:
                 d1=0;
                 d2=1;
+                break;
             case SOUTH:
                 d1=1;
                 d2=0;
+                break;
             case EAST:
                 d1=2;
                 d2=3;
+                break;
             case WEST:
                 d1=3;
                 d2=2;
+                break;
         }
         if(this.getRoomsDirections()[d1]==null&& other.getRoomsDirections()[d2]==null){
             this.getRoomsDirections()[d1]=other;
             other.getRoomsDirections()[d2]=this;
-            System.out.println(this.getRoomName()+" and "+other.getRoomName()+" are connected");
+            System.out.println(this.getRoomName()+" and "+other.getRoomName()+" are connected"+".");
         }
         else {System.out.println("Could not connect "+this.getRoomName()+" and "+other.getRoomName()+".");}
     }
@@ -127,6 +138,7 @@ public class Room {
     public Room[] getRoomsDirections() {
         return roomsDirections;
     }
+
 
     }
 
