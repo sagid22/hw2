@@ -42,7 +42,7 @@ public class Player {
             }
         }
         this.inventory[place]=newItem;//הכנסת הפריט לתיק
-        System.out.println(this.name + " picked up" + newItem.getName() + " from " + currentRoom.getRoomName() + ".");
+        System.out.println(this.name + " picked up " + newItem.getName() + " from " + currentRoom.getRoomName() + ".");
     }
     public void DropItem(Item itemToDrop,int place){
         for(int i = 0; i<this.inventory.length; i++){
