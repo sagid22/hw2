@@ -142,11 +142,7 @@ public class Room {
      *
      * @return The array of connected rooms in different directions.
      */
-    public Room[] getRoomsDirections() {
-        return roomsDirections;
-    }
-
-
-    }
+    public Room[] getRoomsDirections() {return roomsDirections;}
+}
 
 

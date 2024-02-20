@@ -3,11 +3,19 @@ public class GameManager {
     private Player player;
     private int bagCap;
 
+    /**
+     * creating the rooms in an array
+     */
     public GameManager() {
         this.rooms = new Room[5];
         this.player = null;
     }
 
+    /**
+     * Adds a player to the game.
+     *
+     * @param p The player to be added.
+     */
     public void addPlayer(Player p) {
         if (this.player == null) {
             this.player = p;
@@ -17,6 +25,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * adding a room
+     * @param r The room to add.
+     */
     public void addRoom(Room r) {
         int counter = 0;
         boolean isAdded = false;
@@ -35,6 +47,12 @@ public class GameManager {
 
     }
 
+    /**
+     * Adds an item to a room in the game.
+     *
+     * @param r The room to add the item to.
+     * @param it The item to be added.
+     */
     public void addItem(Room r, Item it) {
         boolean isThere=false;
         for(int i=0;i<rooms.length;i++){
@@ -47,6 +65,11 @@ public class GameManager {
 
     }
 
+    /**
+     * Removes a player from the game.
+     *
+     * @param p The player to be removed.
+     */
     public void removePlayer(Player p) {
         if (this.player == p) {
             this.player.removePlayerItems();
@@ -57,6 +80,11 @@ public class GameManager {
         }
     }
 
+    /**
+     * Removes a room from the game.
+     *
+     * @param r The room to be removed.
+     */
     public void removeRoom(Room r) {
         boolean isthere = false; // if the room is exists in the room array
         for (int i = 0; i < rooms.length; i++) {
@@ -88,12 +116,22 @@ public class GameManager {
         }
     }
 
-
+    /**
+     * Connects two rooms in the game.
+     *
+     * @param room1 The first room to connect.
+     * @param room2 The second room to connect.
+     * @param d     The direction of the connection.
+     */
     public void connectRooms(Room room1, Room room2, Direction d) {
         room1.roomToRoomConnection(room2, d);
     }
 
-
+    /**
+     * Starts the player in a specified room.
+     *
+     * @param startRoom The room where the player starts.
+     */
     public void startPlayer(Room startRoom) {
         if (this.player.getCurrentRoom() == null) {
             this.player.initializationCurrentRoom(startRoom);
@@ -104,7 +142,11 @@ public class GameManager {
 
     }
 
-
+    /**
+     * Moves the player in a specified direction.
+     *
+     * @param dMove The direction in which to move the player.
+     */
     public void movePlayer(Direction dMove) {
         Room current=this.player.getCurrentRoom();
         int d = -1;
@@ -136,7 +178,11 @@ public class GameManager {
         }
     }
 
-
+    /**
+     * Picks up an item from the current room.
+     *
+     * @param it The item to pick up.
+     */
     public void pickUpItem(Item it) {
         Room current = this.player.getCurrentRoom();
         boolean isInRoom = false;
@@ -164,6 +210,11 @@ public class GameManager {
         }
     }
 
+    /**
+     * Drops an item in the current room.
+     *
+     * @param it The item to drop.
+     */
     public void dropItem(Item it) {
         boolean isInBag = false;
         for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
@@ -195,6 +246,11 @@ public class GameManager {
         }
     }
 
+    /**
+     * Disassembles an item.
+     *
+     * @param it The item to disassemble.
+     */
     public void disassembleItem(Item it) {
         boolean isDestroyed = false;
         for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
@@ -216,6 +272,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Solves the puzzle in the current room.
+     */
     public void solvePuzzle() {
         Room current=this.player.getCurrentRoom();
         if (current.getPuzzleStatus()) { //if the puzzle exists
@@ -226,15 +285,24 @@ public class GameManager {
         }
     }
 
+    /**
+     * Activates a puzzle in a specified room.
+     *
+     * @param currentRoom The room where the puzzle is activated.
+     */
     public void activatePuzzle(Room currentRoom) {
         currentRoom.setPuzzleStatus(true);
     }
 
+    /**
+     * Deactivates a puzzle in a specified room.
+     *
+     * @param currentRoom The room where the puzzle is deactivated.
+     */
     public void deactivatePuzzle(Room currentRoom) {
         currentRoom.setPuzzleStatus(false);
     }
-
-    }
+}
 
 
 
