@@ -1,0 +1,69 @@
+Test 1 starts
+Room 1 was added to the game.
+Room 2 was added to the game.
+Room 3 was added to the game.
+Room 4 was added to the game.
+Room 5 was added to the game.
+Could not add Room 6 to the game.
+Room 5 was removed from the game.
+Room 6 was added to the game.
+Room 1 and Room 2 are connected.
+Could not connect Room 1 and Room 2.
+Could not connect Room 1 and Room 3.
+Could not connect Room 3 and Room 2.
+Room 1 and Room 3 are connected.
+Room 5 does not exist.
+Room 2 was removed from the game.
+Room 1 and Room 4 are connected.
+Test 1 done
+--------------------------------------------
+Test 2 starts
+Could not add Item 1 to the game.
+Room 1 was added to the game.
+Room 2 was added to the game.
+Item 1 was added to the game.
+Item 2 was added to the game.
+Could not add Item 3 to the game.
+Test 2 done
+--------------------------------------------
+Test 3 starts
+Room 1 was added to the game.
+Player 1 was added to the game.
+Player 1 starts in Room 1.
+Item 1 was added to the game.
+Item 2 was added to the game.
+Item 1 is not in Player 1's inventory.
+Player 1 picked up Item 1 from Room 1.
+Item 1 is not in Room 1.
+Player 1 picked up Item 2 from Room 1.
+Player 1 dropped Item 1 in Room 1.
+Item 3 is not in Room 1.
+Player 1 picked up Item 1 from Room 1.
+Item 3 was added to the game.
+Player 1's inventory is full.
+Test 3 done
+--------------------------------------------
+Test 4 starts
+Could not add Item 1 to the game.
+Room 1 was added to the game.
+Room 2 was added to the game.
+Item 1 was added to the game.
+Item 2 was added to the game.
+Item 3 was added to the game.
+Player 1 was added to the game.
+Player 1 starts in Room 1.
+Room 1 and Room 2 are connected.
+Player 1 could not move via the south exit.
+Player 1 picked up Item 3 from Room 1.
+Player 1 could not move via the north exit.
+Player 1 is solving the puzzle in Room 1.
+Player 1 moved from Room 1 to Room 2 via the north exit.
+Room 2 is full.
+There is no active puzzle in Room 2.
+Player 1 moved from Room 2 to Room 1 via the south exit.
+Player 1 dropped Item 3 in Room 1.
+Player 1 could not disassemble Item 1.
+Player 1 disassembled Item 3.
+Item 3 is not in Room 1.
+Test 4 done
+--------------------------------------------
