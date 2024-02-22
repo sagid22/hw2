@@ -59,31 +59,21 @@ public class Room {
      *
      * @param r the room to be removed from the array of room directions
      */
-    public void removeFromRoomDirection(Room r){//מקבלת חדר ובמידה והוא מחובר במערך הכיוונים- שמים במקומו NULL
+    public void removeFromRoomDirection(Room r){
         for (int i=0;i<roomsDirections.length;i++){
-            if(roomsDirections[i]==r){
-                roomsDirections[i]=null;
+            if(this.roomsDirections[i]==r){
+                this.roomsDirections[i]=null;
             }
         }
     }
 
     /**
-     * Removes an item from the room.
+     * Removes the items from the room.
      *
-     * @param it The item to remove from the room.
      */
-    public void removeItemFromRoom(Item it) {
-        boolean isthere = false;
+    public void removeItemFromRoom() {
         for (int i = 0; i < listItems.length; i++) {
-            if (listItems[i] == it) {//לבדוק אם ההשוואה טובה, אם לא לעשות equals או ככה או get.name
-                isthere = true;
-                listItems[i] = null;
-                System.out.println(it.getName() + " was removed from the game.");
-            }
-
-        }
-        if (isthere == false) {
-            System.out.println(it.getName() + " does not exist.");
+            this.listItems[i] = null;
         }
     }
 

@@ -67,3 +67,23 @@ Player 1 disassembled Item 3.
 Item 3 is not in Room 1.
 Test 4 done
 --------------------------------------------
+Test 5 starts
+Could not add Item 1 to the game.
+Room 1 was added to the game.
+Item 2 was added to the game.
+Item 1 was added to the game.
+Player 1 was added to the game.
+Player 1 starts in Room 1.
+Player 1 picked up Item 1 from Room 1.
+Player 1 was removed from the game.
+Player 1 was added to the game.
+Player 1 starts in Room 1.
+Player 1 could not disassemble Item 1.
+Player 1 was removed from the game.
+Room 1 was removed from the game.
+Room 1 was added to the game.
+Player 1 was added to the game.
+Player 1 starts in Room 1.
+Player 1 could not disassemble Item 2.
+Test 5 done
+--------------------------------------------

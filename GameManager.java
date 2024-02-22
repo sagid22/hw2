@@ -73,6 +73,7 @@ public class GameManager {
     public void removePlayer(Player p) {
         if (this.player == p) {
             this.player.removePlayerItems();
+            this.player.setCurrentRoom(null);
             this.player = null;
             System.out.println(p.getName() + " was removed from the game.");
         } else {
@@ -101,10 +102,13 @@ public class GameManager {
                         System.out.println(r.getRoomName() + " was removed from the game.");
                     }
                 }
-                else if(isthere){
+                else if(isthere){// we want to remove room r from the array, and disconnect the others rooms to him
                     for (int k=0;k<rooms.length;k++) {
-                        rooms[k].removeFromRoomDirection(r);
+                        if(rooms[k]!=null){
+                            rooms[k].removeFromRoomDirection(r);
+                        }
                     }
+                    rooms[i].removeItemFromRoom();
                     rooms[i] = null;
                     System.out.println(r.getRoomName() + " was removed from the game.");
                 }
@@ -187,11 +191,11 @@ public class GameManager {
         Room current = this.player.getCurrentRoom();
         boolean isInRoom = false;
         for (int j = 0; j < current.getListItems().length; j++) {
-            if (current.getListItems()[j] == it) {//אם יש את החפץ בחדר
+            if (current.getListItems()[j] == it) {
                 isInRoom = true;
                 boolean isTherePlace = false;
                 int count = 0;
-                while (!isTherePlace && count < this.player.getInventory().length) {//בודקת אם יש מקום בתיק של השחקן
+                while (!isTherePlace && count < this.player.getInventory().length) {
                     if (this.player.getInventory()[count] == null) {
                         isTherePlace = true;
                     } else {
@@ -217,7 +221,7 @@ public class GameManager {
      */
     public void dropItem(Item it) {
         boolean isInBag = false;
-        for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
+        for (int i = 0; i < this.player.getInventory().length; i++) {
             if (this.player.getInventory()[i] == it) {
                 isInBag = true;
             }
@@ -253,13 +257,13 @@ public class GameManager {
      */
     public void disassembleItem(Item it) {
         boolean isDestroyed = false;
-        for (int i = 0; i < this.player.getInventory().length; i++) {//בדיקה האם הפריט בתיק
+        for (int i = 0; i < this.player.getInventory().length; i++) {
             if (this.player.getInventory()[i] == it) {
                 this.player.destroyItemFromInventory(it,i);
                 isDestroyed = true;
             }
         }
-        for (int k = 0; k < this.player.getCurrentRoom().getListItems().length; k++) {// בידקה האם הפריט בחדר
+        for (int k = 0; k < this.player.getCurrentRoom().getListItems().length; k++) {
             if (this.player.getCurrentRoom().getListItems()[k] == it) {
                 this.player.destroyItemFromCurrentRoom(it,k);
                 isDestroyed = true;
@@ -279,7 +283,7 @@ public class GameManager {
         Room current=this.player.getCurrentRoom();
         if (current.getPuzzleStatus()) { //if the puzzle exists
             System.out.println(this.player.getName() + " is solving the puzzle in " + current.getRoomName()+".");
-            current.setPuzzleStatus(false);//אולי אפשר לעשות deactivate.לנסות להבין האם ההגדרה של אמת-החידה לא פתורה ושקר לא פתורה זו הקונבנציה הנכונה
+            current.setPuzzleStatus(false);
         } else {
             System.out.println("There is no active puzzle in " + current.getRoomName() + ".");
         }

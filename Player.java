@@ -61,7 +61,7 @@ public class Player {
      */
     public void removePlayerItems(){
         for (int i = 0; i< inventory.length; i++){
-            inventory[i]= null;
+            this.inventory[i]= null;
         }
     }
 

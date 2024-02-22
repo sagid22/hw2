@@ -20,6 +20,11 @@ public class Main {
         System.out.println("Test 4 done");
         System.out.println("--------------------------------------------");
 
+        System.out.println("Test 5 starts");
+        test5();
+        System.out.println("Test 5 done");
+        System.out.println("--------------------------------------------");
+
 
     }
 
@@ -158,5 +163,44 @@ public class Main {
         gameManager.disassembleItem(item1);
         gameManager.disassembleItem(item3);
         gameManager.pickUpItem(item3);
+    }
+
+    public static void test5() {
+        GameManager gameManager = new GameManager();
+
+        Room room1 = new Room("Room 1");
+
+        Item item1 = new Item("Item 1");
+        Item item2 = new Item("Item 2");
+
+        gameManager.addItem(room1, item1);
+
+        gameManager.addRoom(room1);
+
+        gameManager.addItem(room1, item2);
+        gameManager.addItem(room1, item1);
+
+        Player player = new Player("Player 1", 2);
+
+        gameManager.addPlayer(player);
+        gameManager.startPlayer(room1);
+
+        gameManager.pickUpItem(item1);
+
+        gameManager.removePlayer(player);
+
+        gameManager.addPlayer(player);
+        gameManager.startPlayer(room1);
+
+        gameManager.disassembleItem(item1);
+        gameManager.removePlayer(player);
+
+        gameManager.removeRoom(room1);
+        gameManager.addRoom(room1);
+
+        gameManager.addPlayer(player);
+        gameManager.startPlayer(room1);
+
+        gameManager.disassembleItem(item2);
     }
 }
