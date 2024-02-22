@@ -92,7 +92,7 @@ public class Player {
      * @param place   The index where the item should be placed in the inventory.
      */
     public void addItemToBag(Item newItem,int place){
-        for(int i=0;i<currentRoom.getListItems().length;i++){//הרמת הפריט מהחדר
+        for(int i=0;i<currentRoom.getListItems().length;i++){
             if(currentRoom.getListItems()[i]==newItem){
                 currentRoom.getListItems()[i]=null;
             }
