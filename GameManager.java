@@ -1,7 +1,6 @@
 public class GameManager {
     private Room[] rooms;
     private Player player;
-    private int bagCap;
 
     /**
      * creating the rooms in an array
@@ -98,6 +97,7 @@ public class GameManager {
                         for (int j=0;j<rooms.length;j++) {
                             rooms[j].removeFromRoomDirection(r);
                         }
+                        rooms[i].removeItemFromRoom();
                         rooms[i] = null;
                         System.out.println(r.getRoomName() + " was removed from the game.");
                     }

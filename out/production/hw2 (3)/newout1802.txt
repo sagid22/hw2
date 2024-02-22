@@ -84,6 +84,6 @@ Room 1 was removed from the game.
 Room 1 was added to the game.
 Player 1 was added to the game.
 Player 1 starts in Room 1.
-Player 1 disassembled Item 2.
+Player 1 could not disassemble Item 2.
 Test 5 done
 --------------------------------------------
