@@ -11,7 +11,7 @@ public class Player {
      */
     public  Player(String name,int bagCap){
         this.name=name;
-        this.inventory =new Item[bagCap];
+        this.inventory =new Bag[bagCap];
         this.currentRoom=null;
     }
 

@@ -1,21 +1,17 @@
-public class Item {
-    private  String name;
+abstract class Item {
+    protected String name;
+    protected int value;
 
-    /**
-     * Constructs a new Item object with the specified name.
-     *
-     * @param name The name of the item.
-     */
-    public  Item (String name){
-        this.name=name;
+    public Item (String name,int value){
+        this.name= name;
+        this.value= value;
+    }
+    public String getName(){
+     return this.name;
+    }
+    public int getValue(){
+        return this.value;
     }
 
-    /**
-     * Gets the name of the item.
-     *
-     * @return The name of the item.
-     */
-    public String getName() {
-        return name;
-    }
+    public abstract void useItem(Player player);
 }
