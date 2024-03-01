@@ -154,6 +154,53 @@ public class Room {
      * @return The array of connected rooms in different directions.
      */
     public Room[] getRoomsDirections() {return roomsDirections;}
+
+    public int sumValuesOfRoomItems(){
+        int sum=0;
+        for (int i=0; i<this.listItems.length; i++){
+            sum+= listItems[i].getValue();
+        }
+        return sum;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Room)) {
+            return false;
+        }
+        Room otherRoom = (Room) other;
+        return (this.getRoomName() == otherRoom.getRoomName() &&
+                this.getPuzzleStatus()== otherRoom.getPuzzleStatus()&&
+                this.getKeyRoomStatus()== otherRoom.getKeyRoomStatus()&&
+                this.sumValuesOfRoomItems()== otherRoom.sumValuesOfRoomItems());
+    }
+    @Override
+    public int hashCode() {
+        int result = 19; // Different initial prime number
+        int multiplier = 43; // Different multiplier
+
+        result = multiplier * result + name.hashCode();
+        result = multiplier * result + (puzzleStatus ? 1 : 0);
+        result = multiplier * result + (keyRoomStatus ? 1 : 0);
+        result = multiplier * result + sumValuesOfRoomItems();
+        result = multiplier * result + (roomkey != null ? roomkey.hashCode() : 0);
+
+        for (Item item : listItems) {
+            if (item != null) {
+                result = multiplier * result + item.hashCode();
+            }
+        }
+
+        for (Room room : roomsDirections) {
+            if (room != null) {
+                result = multiplier * result + room.hashCode();
+            }
+        }
+
+        return result;
+    }
+
+
+
 }
 
 
