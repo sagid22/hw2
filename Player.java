@@ -2,6 +2,7 @@ public class Player {
     private  String name;
     private Item[] inventory;
     private Room currentRoom;
+    private Bag playerBag;
 
     /**
      * Constructs a new Player object with the specified name and bag capacity.
@@ -9,11 +10,13 @@ public class Player {
      * @param name    The name of the player.
      * @param bagCap  The capacity of the player's inventory.
      */
-    public  Player(String name,int bagCap){
-        this.name=name;
-        this.inventory =new Item[bagCap];
-        this.currentRoom=null;
+    public  Player(String name, int bagCap){
+        this.name= name;
+        this.inventory = new Item[bagCap];
+        this.currentRoom= null;
+        this.playerBag=null;
     }
+
 
     /**
      * Gets the name of the player.
@@ -38,7 +41,7 @@ public class Player {
      *
      * @return The current room of the player.
      */
-    public Room getCurrentRoom(){return  this.currentRoom;}
+    public Room getCurrentRoom(){return this.currentRoom;}
 
     /**
      * Sets the current room of the player.
@@ -82,7 +85,7 @@ public class Player {
      * @param index The index of the item in the current room's item list.
      */
     public void destroyItemFromCurrentRoom(Item it, int index) {
-        this.currentRoom.getListItems()[index]=null;
+        this.currentRoom.getListItems()[index]= null;
     }
 
     /**
@@ -91,10 +94,10 @@ public class Player {
      * @param newItem The item to add to the inventory.
      * @param place   The index where the item should be placed in the inventory.
      */
-    public void addItemToBag(Item newItem,int place){
-        for(int i=0;i<currentRoom.getListItems().length;i++){
-            if(currentRoom.getListItems()[i]==newItem){
-                currentRoom.getListItems()[i]=null;
+    public void addItemToBag(Item newItem, int place){
+        for(int i=0; i<currentRoom.getListItems().length; i++){
+            if(currentRoom.getListItems()[i]== newItem){
+                currentRoom.getListItems()[i]= null;
             }
         }
         this.inventory[place]=newItem;//הכנסת הפריט לתיק
@@ -109,15 +112,63 @@ public class Player {
      */
     public void dropItem(Item itemToDrop, int place){
         for(int i = 0; i<this.inventory.length; i++){
-            if(this.inventory[i]==itemToDrop){
-                this.inventory[i]=null;
+            if(this.inventory[i]== itemToDrop){
+                this.inventory[i]= null;
             }
         }
-        this.currentRoom.getListItems()[place]=itemToDrop;
+        this.currentRoom.getListItems()[place]= itemToDrop;
         System.out.println(this.name + " dropped " + itemToDrop.getName() + " in " + currentRoom.getRoomName() + ".");
     }
 
-    public void changeBags(Bag newBag){
-        if(newBag.inventory.length)
+    public int sumValuesOfplayerBag(){
+        int sum=0;
+        for (int i=0; i<this.inventory.length; i++){
+            sum+= inventory[i].getValue();
+        }
+        return sum;
     }
+
+    public Bag getPlayerBag(){
+        return playerBag;
+    }
+    public void setPlayerBag(Bag newBag){
+        this.playerBag=newBag;
+    }
+
+    public int countItemsInInventory(){
+        int counter= 0;
+        for(int i=0; i<this.getInventory().length; i++){
+            if(this.getInventory()[i] != null){
+                counter+=1;
+            }
+        }
+        return counter;
+    }
+    @Override
+    public boolean equals(Object otherPlayer1) {
+        if (!(otherPlayer1 instanceof Player)) {
+            return false;
+        }
+        Player otherPlayer2 = (Player) otherPlayer1;
+        return (this.sumValuesOfplayerBag() == otherPlayer2.sumValuesOfplayerBag());
+    }
+    @Override
+    public int hashCode() {
+        int result = 23; // Different initial prime number
+        int multiplier = 37; // Different multiplier
+
+        result = multiplier * result + name.hashCode();
+        result = multiplier * result + sumValuesOfplayerBag();
+        result = multiplier * result + (currentRoom != null ? currentRoom.hashCode() : 0);
+
+        for (Item item : inventory) {
+            if (item != null) {
+                result = multiplier * result + item.hashCode();
+            }
+        }
+
+        return result;
+    }
+
+
 }

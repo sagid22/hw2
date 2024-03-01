@@ -1,8 +1,7 @@
 abstract class Item {
     protected String name;
     protected int value;
-
-    public Item (String name,int value){
+    public Item (String name, int value){
         this.name= name;
         this.value= value;
     }
