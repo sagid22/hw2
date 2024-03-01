@@ -11,7 +11,7 @@ public class Player {
      */
     public  Player(String name,int bagCap){
         this.name=name;
-        this.inventory =new Bag[bagCap];
+        this.inventory =new Item[bagCap];
         this.currentRoom=null;
     }
 
@@ -102,12 +102,12 @@ public class Player {
     }
 
     /**
-     * Drops an item from the player's inventory into the current room.
+     * drops an item from the player's inventory into the current room.
      *
      * @param itemToDrop The item to drop.
      * @param place      The index of the item in the inventory.
      */
-    public void DropItem(Item itemToDrop,int place){
+    public void dropItem(Item itemToDrop, int place){
         for(int i = 0; i<this.inventory.length; i++){
             if(this.inventory[i]==itemToDrop){
                 this.inventory[i]=null;
@@ -115,5 +115,9 @@ public class Player {
         }
         this.currentRoom.getListItems()[place]=itemToDrop;
         System.out.println(this.name + " dropped " + itemToDrop.getName() + " in " + currentRoom.getRoomName() + ".");
+    }
+
+    public void changeBags(Bag newBag){
+        if(newBag.inventory.length)
     }
 }

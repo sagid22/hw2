@@ -3,6 +3,9 @@ public class Room {
     private Item[] listItems;
     private Room[] roomsDirections;
     private boolean puzzleStatus;
+    private Key roomkey;
+    private boolean keyRoomStatus;
+
 
     /**
      * Constructs a new Room object with the specified name.
@@ -14,6 +17,8 @@ public class Room {
         this.listItems = new Item[2];
         this.roomsDirections = new Room[4];//north-0,south-1,east-2,west-3
         this.puzzleStatus = false;
+        this.roomkey= null;
+        this.keyRoomStatus = false;
     }
 
     /**
@@ -32,6 +37,22 @@ public class Room {
      */
     public void setPuzzleStatus(boolean status) {
         this.puzzleStatus = status;
+    }
+
+    public void setRoomKey(Key k) {
+        this.roomkey = k;
+    }
+
+    public Key getRoomKey() {
+        return this.roomkey;
+    }
+
+    public void setKeyRoomStatus(boolean status) {
+        this.keyRoomStatus = status;
+    }
+
+    public boolean getKeyRoomStatus() {
+        return this.keyRoomStatus;
     }
 
     /**

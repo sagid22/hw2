@@ -8,6 +8,6 @@ public class Bag extends Item{
         this.inventory=new Item[cap];
         }
     void useItem(Player player){
-        
+
     }
 }

@@ -188,29 +188,31 @@ public class GameManager {
      * @param it The item to pick up.
      */
     public void pickUpItem(Item it) {
-        Room current = this.player.getCurrentRoom();
-        boolean isInRoom = false;
-        for (int j = 0; j < current.getListItems().length; j++) {
-            if (current.getListItems()[j] == it) {
-                isInRoom = true;
-                boolean isTherePlace = false;
-                int count = 0;
-                while (!isTherePlace && count < this.player.getInventory().length) {
-                    if (this.player.getInventory()[count] == null) {
-                        isTherePlace = true;
+        if(! (it instanceof Key)) {
+            Room current = this.player.getCurrentRoom();
+            boolean isInRoom = false;
+            for (int j = 0; j < current.getListItems().length; j++) {
+                if (current.getListItems()[j] == it) {
+                    isInRoom = true;
+                    boolean isTherePlace = false;
+                    int count = 0;
+                    while (!isTherePlace && count < this.player.getInventory().length) {
+                        if (this.player.getInventory()[count] == null) {
+                            isTherePlace = true;
+                        } else {
+                            count += 1;
+                        }
+                    }
+                    if (isTherePlace) {
+                        this.player.addItemToBag(it, count);
                     } else {
-                        count += 1;
+                        System.out.println(this.player.getName() + "'s inventory is full.");
                     }
                 }
-                if (isTherePlace) {
-                    this.player.addItemToBag(it, count);
-                } else {
-                    System.out.println(this.player.getName()+"'s inventory is full.");
-                }
             }
-        }
-        if (!isInRoom) {
-            System.out.println(it.getName() + " is not in " + current.getRoomName() + ".");
+            if (!isInRoom) {
+                System.out.println(it.getName() + " is not in " + current.getRoomName() + ".");
+            }
         }
     }
 
@@ -238,7 +240,7 @@ public class GameManager {
                 }
             }
             if (isTherePlaceInRoom) {
-                this.player.DropItem(it,counter);
+                this.player.dropItem(it,counter);
             }
             else {
                 System.out.println(current.getRoomName() + " is full.");
@@ -295,7 +297,12 @@ public class GameManager {
      * @param currentRoom The room where the puzzle is activated.
      */
     public void activatePuzzle(Room currentRoom) {
-        currentRoom.setPuzzleStatus(true);
+        if (! currentRoom.getKeyRoomStatus()){
+            currentRoom.setPuzzleStatus(true);
+        }
+        else {
+            System.out.println(currentRoom.getRoomName()+" was unlocked with "+ currentRoom.getRoomKey().getName()+".");
+        }
     }
 
     /**
@@ -304,7 +311,12 @@ public class GameManager {
      * @param currentRoom The room where the puzzle is deactivated.
      */
     public void deactivatePuzzle(Room currentRoom) {
-        currentRoom.setPuzzleStatus(false);
+        if (! currentRoom.getKeyRoomStatus()){
+            currentRoom.setPuzzleStatus(false);
+        }
+        else {
+            System.out.println(currentRoom.getRoomName()+" was unlocked with "+ currentRoom.getRoomKey().getName()+".");
+        }
     }
 }
 
